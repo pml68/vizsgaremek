@@ -2,7 +2,16 @@
 
 Frontend design-ok: <https://canva.link/flgk0qsch5cmc6r>
 
-Egy online pénzügy kezelési rendszer; alkalmi / időzített kiadások és bevételek.
+Mirai Ledger egy személyes pénzügy-kezelő webalkalmazás
+
+# Az alkalmazás célja:
+Segít az embereknek nyomon követni a kiadásaikat, bevételeiket és a havi költségvetésüket — egyszerű, letisztult felülettel, diákoktól a családokon át a szakemberekig bárki számára.
+
+# Fő funkciók, amiket a weboldal bemutat:
+
+Tranzakciók kezelése — egyszeri vagy ismétlődő tranzakciók rögzítése, egyéni kategóriákkal, kereséssel és szűréssel
+Kiadáselemzés — havi bevétel/kiadás áttekintés, egyenleg (megtakarítás vs. túlköltekezés), grafikonok
+Rendszeres fizetések — heti, havi vagy éves ismétlődő tranzakciók beütemezése, hogy semmi ne maradjon le
 
 ## Features
 
