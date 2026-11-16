@@ -1,0 +1,63 @@
+-- Add up migration script here
+CREATE TABLE IF NOT EXISTS users (
+  id UUID NOT NULL PRIMARY KEY DEFAULT UUID_V7(),
+  disabled BOOLEAN NOT NULL DEFAULT TRUE,
+  username TEXT NOT NULL,
+  email_address TEXT NOT NULL,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  pass BINARY(64) NOT NULL,
+  totp_secret BLOB NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS email_verification (
+  token BINARY(64) NOT NULL PRIMARY KEY,
+  user_id UUID NOT NULL,
+  expires_at DATETIME NOT NULL DEFAULT TIMESTAMPADD(DAY, 1, NOW()),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS sessions (
+  id BINARY(64) NOT NULL PRIMARY KEY,
+  user_id UUID NOT NULL,
+  expires_at DATETIME NOT NULL DEFAULT TIMESTAMPADD(SECOND, 90, NOW()),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS categories (
+  id UUID NOT NULL PRIMARY KEY DEFAULT UUID_V7(),
+  user_id UUID,
+  name TEXT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS transaction_records (
+  id UUID NOT NULL PRIMARY KEY DEFAULT UUID_V7(),
+  user_id UUID NOT NULL,
+  title TEXT NOT NULL,
+  category_id UUID NOT NULL,
+  at DATETIME NOT NULL DEFAULT NOW(),
+  value INT NOT NULL,
+  description TEXT,
+  FOREIGN KEY (category_id) REFERENCES categories(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS repeating_transactions (
+  id UUID NOT NULL PRIMARY KEY DEFAULT UUID_V7(),
+  original_id UUID NOT NULL,
+  repeats_at DATETIME NOT NULL,
+  FOREIGN KEY (original_id) REFERENCES transaction_records(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+);
