@@ -1,6 +1,9 @@
 # MacOS artifacts
 .DS_Store
 
+# RustRover project settings
+.idea/
+
 # Rust build artifacts
 target/
 
