@@ -1,0 +1,6 @@
+* text=auto eol=lf
+.sqlx/* -diff
+
+*.png binary
+*.jpg binary
+*.ico binary
