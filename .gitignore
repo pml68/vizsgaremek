@@ -1,1 +1,11 @@
+# MacOS artifacts
 .DS_Store
+
+# Rust build artifacts
+target/
+
+# Logging artifacts
+debug_log.json
+
+# Personal data
+*.env
