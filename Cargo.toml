@@ -31,3 +31,25 @@ tokio = { version = "1.54", features = ["rt-multi-thread"] }
 tower-http = { version = "0.7", features = ["cors"] }
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["json"] }
+
+[lints.rust]
+missing_debug_implementations = "deny"
+unsafe_code = "deny"
+unused_results = "deny"
+
+[lints.clippy]
+type_complexity = "allow"
+uninlined_format_args = "allow"
+semicolon_if_nothing_returned = "deny"
+trivially_copy_pass_by_ref = "deny"
+default_trait_access = "deny"
+match_wildcard_for_single_variants = "deny"
+redundant_closure_for_method_calls = "deny"
+filter_map_next = "deny"
+manual_let_else = "deny"
+unused_async = "deny"
+from_over_into = "deny"
+needless_borrow = "deny"
+new_without_default = "deny"
+useless_conversion = "deny"
+clone_on_copy = "deny"
