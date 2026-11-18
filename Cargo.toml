@@ -14,6 +14,7 @@ argon2 = { version = "0.6", features = ["getrandom"] }
 chrono = { version = "0.4", features = ["serde"] }
 jsonwebtoken = "12.0"
 zxcvbn = "3.1"
+uuid = { version = "1.29", features = ["serde"] }
 sqlx = {
   version = "0.9",
   features = [
