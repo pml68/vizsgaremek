@@ -1,4 +1,5 @@
 mod log;
+mod models;
 
 use std::time::Duration;
 
