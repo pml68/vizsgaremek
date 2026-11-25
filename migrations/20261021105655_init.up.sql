@@ -56,9 +56,18 @@ CREATE TABLE IF NOT EXISTS transaction_records (
 
 CREATE TABLE IF NOT EXISTS repeating_transactions (
   id UUID NOT NULL PRIMARY KEY DEFAULT UUID_V7(),
-  original_id UUID NOT NULL,
+  user_id UUID NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  category_id UUID NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE CURRENT_TIMESTAMP,
   repeats_at TIMESTAMP NOT NULL,
-  FOREIGN KEY (original_id) REFERENCES transaction_records(id)
+  value INT NOT NULL,
+  description TEXT,
+  FOREIGN KEY (category_id) REFERENCES categories(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
